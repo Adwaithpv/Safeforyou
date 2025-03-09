@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "99173960298",
+    "project_id": "safeforyou-99d78",
+    "storage_bucket": "safeforyou-99d78.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:99173960298:android:07b3bbd08bcd6fe8331813",
+        "android_client_info": {
+          "package_name": "SafeForyou.Package"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhO6lBEbhT7-HPljCl8b0ZHeQC1YkWlaQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
