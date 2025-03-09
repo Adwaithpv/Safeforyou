@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Location Tracking</title>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+    <!-- Ensure Google Maps API is loaded properly with async and defer attributes -->
+    <script>
+        function loadGoogleMaps() {
+            const script = document.createElement("script");
+            script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBnjDijcgHP9ZMLB_lAqW8z1Fpy6EP2RPc&callback=initMap";
+            script.async = true;   // Ensures the script loads asynchronously
+            script.defer = true;   // Ensures script execution doesn't block DOM parsing
+            document.head.appendChild(script);
+        }
+
+        // Load Google Maps when the page is ready
+        window.onload = loadGoogleMaps;
+    </script>
+
+    <!-- Link to your script.js -->
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <h1>Live Location Tracking</h1>
+    <div id="map" style="height: 500px; width: 100%;"></div>
+</body>
+</html>
