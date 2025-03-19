@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "99173960298",
-    "project_id": "safeforyou-99d78",
-    "storage_bucket": "safeforyou-99d78.firebasestorage.app"
+    "project_number": "615108194395",
+    "project_id": "social-hobby-activity-t-dv1typ",
+    "storage_bucket": "social-hobby-activity-t-dv1typ.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:99173960298:android:07b3bbd08bcd6fe8331813",
+        "mobilesdk_app_id": "1:615108194395:android:3c53bfe0ca88697221cf7e",
         "android_client_info": {
           "package_name": "SafeForyou.Package"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBhO6lBEbhT7-HPljCl8b0ZHeQC1YkWlaQ"
+          "current_key": "AIzaSyBwSiYr_QAtM3MHenYa0glUs-Ob4QfGm6w"
         }
       ],
       "services": {

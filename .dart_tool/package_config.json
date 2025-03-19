@@ -21,7 +21,7 @@
     },
     {
       "name": "args",
-      "rootUri": "file:///C:/Users/vasis/AppData/Local/Pub/Cache/hosted/pub.dev/args-2.6.0",
+      "rootUri": "file:///C:/Users/vasis/AppData/Local/Pub/Cache/hosted/pub.dev/args-2.7.0",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
@@ -620,6 +620,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "platform_detect",
+      "rootUri": "file:///C:/Users/vasis/AppData/Local/Pub/Cache/hosted/pub.dev/platform_detect-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "plugin_platform_interface",
       "rootUri": "file:///C:/Users/vasis/AppData/Local/Pub/Cache/hosted/pub.dev/plugin_platform_interface-2.1.8",
       "packageUri": "lib/",
@@ -630,6 +636,54 @@
       "rootUri": "file:///C:/Users/vasis/AppData/Local/Pub/Cache/hosted/pub.dev/provider-6.1.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "pub_semver",
+      "rootUri": "file:///C:/Users/vasis/AppData/Local/Pub/Cache/hosted/pub.dev/pub_semver-2.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "record",
+      "rootUri": "file:///C:/Users/vasis/AppData/Local/Pub/Cache/hosted/pub.dev/record-5.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "record_android",
+      "rootUri": "file:///C:/Users/vasis/AppData/Local/Pub/Cache/hosted/pub.dev/record_android-1.2.6",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "record_darwin",
+      "rootUri": "file:///C:/Users/vasis/AppData/Local/Pub/Cache/hosted/pub.dev/record_darwin-1.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "record_linux",
+      "rootUri": "file:///C:/Users/vasis/AppData/Local/Pub/Cache/hosted/pub.dev/record_linux-0.7.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "record_platform_interface",
+      "rootUri": "file:///C:/Users/vasis/AppData/Local/Pub/Cache/hosted/pub.dev/record_platform_interface-1.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "record_web",
+      "rootUri": "file:///C:/Users/vasis/AppData/Local/Pub/Cache/hosted/pub.dev/record_web-1.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "record_windows",
+      "rootUri": "file:///C:/Users/vasis/AppData/Local/Pub/Cache/hosted/pub.dev/record_windows-1.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
     },
     {
       "name": "rfc_6901",
@@ -926,7 +980,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2025-03-09T07:37:08.764860Z",
+  "generated": "2025-03-19T18:09:41.261564Z",
   "generator": "pub",
   "generatorVersion": "3.6.1",
   "flutterRoot": "file:///C:/flutterapps/flutter_sdk/flutter",

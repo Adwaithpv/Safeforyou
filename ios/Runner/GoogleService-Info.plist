@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyDHHKPvS4j-mLONoY3m7QUeznOsumc2Xuk</string>
+	<string>AIzaSyBvq-m48uYr9dw3PiPlR4OGMcZgtH4K8zs</string>
 	<key>GCM_SENDER_ID</key>
-	<string>99173960298</string>
+	<string>615108194395</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>SafeForyou.Package</string>
 	<key>PROJECT_ID</key>
-	<string>safeforyou-99d78</string>
+	<string>social-hobby-activity-t-dv1typ</string>
 	<key>STORAGE_BUCKET</key>
-	<string>safeforyou-99d78.firebasestorage.app</string>
+	<string>social-hobby-activity-t-dv1typ.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:99173960298:ios:8c74c1f847787a50331813</string>
+	<string>1:615108194395:ios:a63afe8c178bdc5a21cf7e</string>
 </dict>
 </plist>

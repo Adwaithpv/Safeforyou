@@ -5,11 +5,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'edit_profile_model.dart';
 export 'edit_profile_model.dart';
 
@@ -40,13 +37,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
     ));
     _model.yourNameFocusNode ??= FocusNode();
 
-    _model.myBioTextController ??= TextEditingController(
-        text: valueOrDefault<String>(
-      valueOrDefault(currentUserDocument?.bio, ''),
-      'No bio',
-    ));
-    _model.myBioFocusNode ??= FocusNode();
-
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -62,79 +52,38 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100.0),
-        child: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
-          automaticallyImplyLeading: false,
-          actions: [],
-          flexibleSpace: FlexibleSpaceBar(
-            title: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Align(
-                  alignment: AlignmentDirectional(0.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                        child: FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          borderRadius: 30.0,
-                          borderWidth: 1.0,
-                          buttonSize: 45.0,
-                          icon: Icon(
-                            Icons.arrow_back_rounded,
-                            color: Colors.white,
-                            size: 30.0,
-                          ),
-                          onPressed: () async {
-                            context.pop();
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
-                        child: Text(
-                          'Back',
-                          style: FlutterFlowTheme.of(context)
-                              .headlineMedium
-                              .override(
-                                fontFamily: 'Urbanist',
-                                color: Colors.white,
-                                fontSize: 16.0,
-                                letterSpacing: 0.0,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
-                  child: Text(
-                    'Edit your Profile',
-                    style: FlutterFlowTheme.of(context).headlineMedium.override(
-                          fontFamily: 'Urbanist',
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          fontSize: 20.0,
-                          letterSpacing: 0.0,
-                        ),
-                  ),
-                ),
-              ],
-            ),
-            centerTitle: true,
-            expandedTitleScale: 1.0,
+      appBar: AppBar(
+        backgroundColor: Color(0xFF9616C5),
+        automaticallyImplyLeading: false,
+        leading: FlutterFlowIconButton(
+          borderColor: Colors.transparent,
+          borderRadius: 30.0,
+          borderWidth: 1.0,
+          buttonSize: 60.0,
+          icon: Icon(
+            Icons.arrow_back_rounded,
+            color: Colors.white,
+            size: 30.0,
           ),
-          elevation: 2.0,
+          onPressed: () async {
+            context.pop();
+          },
         ),
+        title: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
+          child: Text(
+            'Edit your Profile',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Urbanist',
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  fontSize: 20.0,
+                  letterSpacing: 0.0,
+                ),
+          ),
+        ),
+        actions: [],
+        centerTitle: true,
+        elevation: 2.0,
       ),
       body: SafeArea(
         top: true,
@@ -229,30 +178,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             color: FlutterFlowTheme.of(context).alternate,
                             shape: BoxShape.circle,
                           ),
-                          child: AuthUserStreamWidget(
-                            builder: (context) => ClipRRect(
-                              borderRadius: BorderRadius.circular(24.0),
-                              child: Image.network(
-                                valueOrDefault<String>(
-                                  () {
-                                    if (_model.uploadedFileUrl != null &&
-                                        _model.uploadedFileUrl != '') {
-                                      return _model.uploadedFileUrl;
-                                    } else if (currentUserPhoto != null &&
-                                        currentUserPhoto != '') {
-                                      return currentUserPhoto;
-                                    } else {
-                                      return 'https://cdn-icons-png.flaticon.com/512/170/170310.png';
-                                    }
-                                  }(),
-                                  'https://cdn-icons-png.flaticon.com/512/170/170310.png',
-                                ),
-                                width: 200.0,
-                                height: 200.0,
-                                fit: BoxFit.scaleDown,
-                              ),
-                            ),
-                          ),
                         ),
                       ),
                     ],
@@ -320,74 +245,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       maxLength: 30,
                       maxLengthEnforcement: MaxLengthEnforcement.enforced,
                       validator: _model.yourNameTextControllerValidator
-                          .asValidator(context),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 12.0),
-                  child: AuthUserStreamWidget(
-                    builder: (context) => TextFormField(
-                      controller: _model.myBioTextController,
-                      focusNode: _model.myBioFocusNode,
-                      textCapitalization: TextCapitalization.sentences,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Manrope',
-                                  letterSpacing: 0.0,
-                                ),
-                        hintText: 'Your bio',
-                        hintStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Manrope',
-                                  letterSpacing: 0.0,
-                                ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).primary,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        filled: true,
-                        fillColor:
-                            FlutterFlowTheme.of(context).secondaryBackground,
-                        contentPadding: EdgeInsetsDirectional.fromSTEB(
-                            20.0, 24.0, 0.0, 24.0),
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Manrope',
-                            letterSpacing: 0.0,
-                          ),
-                      textAlign: TextAlign.start,
-                      maxLines: 3,
-                      maxLength: 200,
-                      maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                      validator: _model.myBioTextControllerValidator
                           .asValidator(context),
                     ),
                   ),

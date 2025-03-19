@@ -1,19 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import '/backend/backend.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
 import '/main.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/lat_lng.dart';
-import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'serialization_util.dart';
 
 import '/index.dart';
 
@@ -83,29 +76,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : SignUpWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : SignUpWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : LoginWidget(),
           routes: [
-            FFRoute(
-              name: SignUpWidget.routeName,
-              path: SignUpWidget.routePath,
-              builder: (context, params) => SignUpWidget(),
-            ),
-            FFRoute(
-              name: HomeWidget.routeName,
-              path: HomeWidget.routePath,
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'Home')
-                  : HomeWidget(),
-            ),
             FFRoute(
               name: ProfileWidget.routeName,
               path: ProfileWidget.routePath,
+              requireAuth: true,
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'profile')
                   : ProfileWidget(),
@@ -114,6 +96,49 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: EditProfileWidget.routeName,
               path: EditProfileWidget.routePath,
               builder: (context, params) => EditProfileWidget(),
+            ),
+            FFRoute(
+              name: SettingsWidget.routeName,
+              path: SettingsWidget.routePath,
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'Settings')
+                  : SettingsWidget(),
+            ),
+            FFRoute(
+              name: HomepageWidget.routeName,
+              path: HomepageWidget.routePath,
+              requireAuth: true,
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'homepage')
+                  : NavBarPage(
+                      initialPage: 'homepage',
+                      page: HomepageWidget(),
+                    ),
+            ),
+            FFRoute(
+              name: EmergencyContactsPageWidget.routeName,
+              path: EmergencyContactsPageWidget.routePath,
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'Emergency_ContactsPage')
+                  : NavBarPage(
+                      initialPage: 'Emergency_ContactsPage',
+                      page: EmergencyContactsPageWidget(),
+                    ),
+            ),
+            FFRoute(
+              name: LoginWidget.routeName,
+              path: LoginWidget.routePath,
+              builder: (context, params) => LoginWidget(),
+            ),
+            FFRoute(
+              name: SignupWidget.routeName,
+              path: SignupWidget.routePath,
+              builder: (context, params) => SignupWidget(),
+            ),
+            FFRoute(
+              name: TermsOfServiceWidget.routeName,
+              path: TermsOfServiceWidget.routePath,
+              builder: (context, params) => TermsOfServiceWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),
@@ -286,7 +311,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/signUp';
+            return '/login';
           }
           return null;
         },
@@ -301,10 +326,10 @@ class FFRoute {
               : builder(context, ffParams);
           final child = appStateNotifier.loading
               ? Container(
-                  color: Color(0xFF961880),
+                  color: Color(0xFFAF3BD4),
                   child: Image.asset(
                     'assets/images/logo_white.png',
-                    fit: BoxFit.scaleDown,
+                    fit: BoxFit.none,
                   ),
                 )
               : page;
