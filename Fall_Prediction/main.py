@@ -26,10 +26,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+#Give proper path for model and scaler
+
 # ==================== CONFIGURATION ====================
-MODEL_JSON_PATH = r"C:\Users\Skandesh Maadhav\Desktop\final\final weights\fall_detection_model.json"
-SCALER_PATH = r"C:\Users\Skandesh Maadhav\Desktop\final\final weights\fall_detection_model_scaler.pkl"
-#THRESHOLD_PATH = r"C:\Users\Skandesh Maadhav\Desktop\final\final weights\fall_detection_model_threshold.txt"
+MODEL_JSON_PATH = r"path-to\fall_detection_model.json"
+SCALER_PATH = r"path-to\fall_detection_model_scaler.pkl"
 WINDOW_SIZE = 75  # 1.5 seconds at 50Hz
 MIN_MOTION_THRESHOLD = 0.3  # Increased sensitivity threshold
 STATIONARY_ACC_STD = 0.05   # Max std dev for stationary state
