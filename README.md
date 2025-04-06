@@ -1,22 +1,25 @@
 # Safe For You
 
-A Flutter application focused on safety and security features, built with modern Flutter practices and Firebase integration. The app includes an advanced ML model for detecting distress in speech patterns.
+A Flutter application focused on safety and security features, built with modern Flutter practices and Firebase integration. The app includes advanced ML models for detecting distress in speech patterns, fall detection, and real-time location tracking with geo-fencing capabilities.
 
 ## Features
 
 - Firebase Authentication with multiple sign-in methods
-- Real-time location tracking
+- Real-time location tracking with geo-fencing
 - Cloud Firestore integration for data storage
 - Cross-platform support (iOS, Android, Web)
 - Modern UI with Material Design
 - Localization support
 - Secure data handling
 - File management and media handling
-- **AI-Powered Distress Detection**
+- **AI-Powered Features**:
   - Speech pattern analysis for distress detection
   - Real-time audio processing
   - TensorFlow Lite integration for mobile deployment
   - High-accuracy deep learning model
+  - Fall detection using accelerometer data
+  - Geo-fencing for location-based safety alerts
+  - Live location tracking and sharing
 
 ## Getting Started
 
@@ -28,6 +31,7 @@ A Flutter application focused on safety and security features, built with modern
 - Android Studio / VS Code with Flutter extensions
 - Python 3.x (for ML model development)
 - TensorFlow 2.x (for ML model development)
+- Node.js (for web components)
 
 ### Installation
 
@@ -53,18 +57,32 @@ flutter pub get
      - `google-services.json` for Android
      - `GoogleService-Info.plist` for iOS
 
-5. Set up the ML model:
-   - Navigate to the Women Safety directory
+5. Set up the ML models:
+   - Navigate to the Women Safety directory for speech distress detection
+   - Navigate to the Fall_Prediction directory for fall detection
    - Install Python dependencies:
    ```bash
    pip install tensorflow pandas numpy scikit-learn joblib
    ```
-   - The pre-trained model files are included in the repository:
-     - `speech_distress_model.tflite` (mobile-optimized)
-     - `speech_distress_model.h5` (full model)
-     - `scaler.save` (feature scaler)
+   - The pre-trained model files are included in their respective directories
 
-6. Run the app:
+6. Set up Geo-Fencing:
+   - Navigate to the Geo-Fencing directory
+   - Install required Python packages:
+   ```bash
+   pip install pandas beautifulsoup4
+   ```
+   - Run the web scraping and article extraction scripts
+
+7. Set up Live Tracking:
+   - Navigate to the Live Tracking directory
+   - Install Node.js dependencies:
+   ```bash
+   npm install
+   ```
+   - Configure Firebase credentials
+
+8. Run the app:
 ```bash
 flutter run
 ```
@@ -85,32 +103,44 @@ safeforyou/
 ├── android/               # Android-specific files
 ├── ios/                   # iOS-specific files
 ├── firebase/              # Firebase configuration
-└── Women Safety/          # ML Model components
-    ├── model.py          # Model architecture and training
-    ├── deploy.py         # Model deployment script
-    ├── speech_distress_model.tflite  # Mobile-optimized model
-    ├── speech_distress_model.h5      # Full model
-    └── scaler.save       # Feature scaler
+├── Women Safety/          # Speech Distress Detection
+│   ├── model.py          # Model architecture and training
+│   ├── deploy.py         # Model deployment script
+│   ├── speech_distress_model.tflite  # Mobile-optimized model
+│   ├── speech_distress_model.h5      # Full model
+│   └── scaler.save       # Feature scaler
+├── Fall_Prediction/       # Fall Detection System
+│   ├── main.py           # Fall detection model
+│   ├── main.dart         # Flutter integration
+│   ├── fall_detection_model.pkl      # Trained model
+│   └── fall_detection_model_scaler.pkl # Feature scaler
+├── Geo-Fencing/          # Location-based Safety
+│   ├── webscraping.py    # News data collection
+│   ├── article_extraction.py # Article processing
+│   ├── map.html          # Interactive map
+│   └── *.csv             # Safety data
+└── Live Tracking/        # Real-time Location
+    ├── app.py           # Backend server
+    ├── script.js        # Frontend logic
+    ├── index.html       # Web interface
+    └── twil.py          # Twilio integration
 ```
 
 ## ML Model Details
 
-The app includes a sophisticated deep learning model for detecting distress in speech patterns:
+The app includes multiple sophisticated deep learning models:
 
-- **Architecture**: Hybrid CNN-LSTM with attention mechanism
-- **Features**: 
-  - Audio signal processing
-  - Mel-frequency cepstral coefficients (MFCC)
-  - Spectral features
-  - Temporal features
-- **Optimization**:
-  - Focal loss for handling class imbalance
-  - Attention mechanism for better feature learning
-  - TensorFlow Lite conversion for mobile deployment
-- **Performance**:
-  - Real-time processing
-  - Mobile-optimized inference
-  - Balanced accuracy across different speech patterns
+1. **Speech Distress Detection**:
+   - Architecture: Hybrid CNN-LSTM with attention mechanism
+   - Features: Audio signal processing, MFCC, Spectral features
+   - Optimization: Focal loss, Attention mechanism
+   - Performance: Real-time processing, Mobile-optimized inference
+
+2. **Fall Detection**:
+   - Architecture: Machine Learning model for accelerometer data
+   - Features: Motion patterns, Acceleration metrics
+   - Optimization: Real-time processing, Low latency
+   - Performance: High accuracy in fall detection
 
 ## Dependencies
 
@@ -126,6 +156,10 @@ Key dependencies include:
 - `sign_in_with_apple`: Apple authentication
 - TensorFlow Lite for Flutter
 - Audio processing libraries
+- Location services
+- Accelerometer sensors
+- Web scraping tools
+- Twilio for notifications
 
 ## Contributing
 
