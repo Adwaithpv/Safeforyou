@@ -1,3 +1,4 @@
+// Import necessary packages
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -8,17 +9,21 @@ void main() {
   runApp(FallDetectionApp());
 }
 
+// Main StatefulWidget for the fall detection system
 class FallDetectionApp extends StatefulWidget {
   @override
   _FallDetectionAppState createState() => _FallDetectionAppState();
 }
 
 class _FallDetectionAppState extends State<FallDetectionApp> {
+  // Status message displayed to the user
   String fallStatus = "Monitoring...";
-  bool fallDetected = false; // 🚨 Stops further updates after detection
-  bool connectionLost = false; // 🔌 Detects API failures
 
-  // Latest sensor readings
+  // Flags to manage fall detection and connectivity state
+  bool fallDetected = false;
+  bool connectionLost = false;
+
+  // Variables to store the latest sensor readings
   double accX = 0, accY = 0, accZ = 0;
   double gyroX = 0, gyroY = 0, gyroZ = 0;
 
@@ -28,7 +33,7 @@ class _FallDetectionAppState extends State<FallDetectionApp> {
     startListening();
   }
 
-  // ✅ Listen to Accelerometer & Gyroscope
+  // Start listening to accelerometer and gyroscope data
   void startListening() {
     accelerometerEvents.listen((event) {
       if (!fallDetected) {
@@ -53,9 +58,9 @@ class _FallDetectionAppState extends State<FallDetectionApp> {
     });
   }
 
-  // ✅ Send sensor data to API
+  // Sends sensor data to the backend API for fall prediction
   Future<void> sendDataToServer() async {
-    if (fallDetected) return; // 🚨 Stop sending data after fall is detected
+    if (fallDetected) return;
 
     final url = Uri.parse("http://your-ip-address/upload_data/");
     final body = jsonEncode({
@@ -71,20 +76,18 @@ class _FallDetectionAppState extends State<FallDetectionApp> {
 
       if (response.statusCode == 200) {
         final result = jsonDecode(response.body);
-        print("✅ Server Response: $result"); // Debugging
+        print("Server Response: $result");
 
         if (result.containsKey("fall_detected")) {
           bool detected = result["fall_detected"];
 
-          // ✅ Ensure UI updates correctly
           setState(() {
             fallDetected = detected;
-            fallStatus = detected ? "🚨 Fall Detected!" : "✅ No Fall";
+            fallStatus = detected ? "Fall Detected!" : "No Fall";
           });
         } else if (result.containsKey("message")) {
-          // ✅ If fall detection is already triggered, ensure UI still updates
           setState(() {
-            fallStatus = "🚨 Fall Detected!";
+            fallStatus = "Fall Detected!";
             fallDetected = true;
           });
         }
@@ -92,24 +95,25 @@ class _FallDetectionAppState extends State<FallDetectionApp> {
         throw Exception("Server error: ${response.body}");
       }
     } catch (e) {
-      print("❌ Failed to send data: $e");
+      print("Failed to send data: $e");
 
       setState(() {
-        fallStatus = "⚠️ Connection Lost";
+        fallStatus = "Connection Lost";
         connectionLost = true;
       });
     }
   }
 
-  // ✅ Reset after fall detection
+  // Resets the UI and monitoring flags after a fall is detected
   void resetMonitoring() {
     setState(() {
       fallDetected = false;
       fallStatus = "Monitoring...";
-      connectionLost = false; // Reset connection status
+      connectionLost = false;
     });
   }
 
+  // Build the user interface
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -130,7 +134,9 @@ class _FallDetectionAppState extends State<FallDetectionApp> {
                 fallStatus,
                 style: TextStyle(
                   fontSize: 24,
-                  color: fallDetected ? Colors.red : (connectionLost ? Colors.orange : Colors.green),
+                  color: fallDetected
+                      ? Colors.red
+                      : (connectionLost ? Colors.orange : Colors.green),
                   fontWeight: FontWeight.bold,
                 ),
               ),
