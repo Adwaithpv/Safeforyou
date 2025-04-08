@@ -1,4 +1,5 @@
 // ✅ Firebase Configuration
+// Replace this config with your Firebase project's credentials
 const firebaseConfig = {
     apiKey: "AIzaSyBxhcL4o6U6AXkPGyVpoqhlCaCQjbLW7ic",
     authDomain: "live-location-2524d.firebaseapp.com",
@@ -12,30 +13,35 @@ const firebaseConfig = {
 
 // ✅ Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
-const userID = "user_12345"; // Change per user
 
-// ✅ Ensure `initMap` is Global (i.e., on `window`)
+// ✅ Create a reference to the Realtime Database
+const database = firebase.database();
+
+// ✅ Set a unique identifier for the user (change this per user/session)
+const userID = "user_12345";
+
+// ✅ Make initMap global so Google Maps API can call it
 window.initMap = function () {
     console.log("✅ Google Maps Loaded & `initMap` Called!");
 
-    // ✅ Create the Map
+    // ✅ Initialize Google Map centered at (0, 0)
     window.map = new google.maps.Map(document.getElementById("map"), {
         zoom: 15,
-        center: { lat: 0, lng: 0 }
+        center: { lat: 0, lng: 0 } // Default center
     });
 
-    // ✅ Add a Marker
+    // ✅ Create a Marker to show user's location
     window.marker = new google.maps.Marker({
         position: { lat: 0, lng: 0 },
         map: window.map
     });
 
-    // ✅ Firebase Real-time Updates
+    // ✅ Listen for real-time location updates from Firebase
     database.ref("locations/" + userID).on("value", (snapshot) => {
         const data = snapshot.val();
         if (data) {
             const position = { lat: data.lat, lng: data.lng };
+            // Update marker position and map center
             window.marker.setPosition(position);
             window.map.setCenter(position);
             console.log(`📍 Map updated: ${data.lat}, ${data.lng}`);
@@ -45,19 +51,21 @@ window.initMap = function () {
     });
 };
 
-// ✅ Update Location Function
+// ✅ Function to continuously update location to Firebase
 function updateLocation() {
     if (!navigator.geolocation) {
         console.error("❌ Geolocation is not supported.");
         return;
     }
 
+    // ✅ Start watching user's location
     navigator.geolocation.watchPosition(
         (position) => {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
             const timestamp = Date.now();
 
+            // ✅ Update Firebase Realtime Database with current location
             database.ref("locations/" + userID).set({ lat, lng, timestamp });
             console.log(`📍 Updated: ${lat}, ${lng}`);
         },
@@ -65,9 +73,12 @@ function updateLocation() {
             console.error("❌ Location Error:", error);
             alert("Location access denied. Please enable GPS.");
         },
-        { enableHighAccuracy: true, maximumAge: 0 }
+        {
+            enableHighAccuracy: true, // Use GPS
+            maximumAge: 0             // No caching
+        }
     );
 }
 
-// ✅ Start tracking user location
+// ✅ Automatically start location tracking when the page loads
 document.addEventListener("DOMContentLoaded", updateLocation);
